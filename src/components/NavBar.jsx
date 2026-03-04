@@ -16,6 +16,7 @@ const NavBar = () => {
       return navigate("/login");
     } catch (err) {
       // handle error if needed
+      console.error(err);
     }
   };
 
