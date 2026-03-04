@@ -8,6 +8,7 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,8 +21,8 @@ const Login = () => {
       );
       dispatch(addUser(res.data));
       navigate("/");
-    } catch (error) {
-      console.error("Error logging in:", error);
+    } catch (err) {
+      setError(err?.response?.data|| "Login Failed!");
     }
   };
 
@@ -63,6 +64,7 @@ const Login = () => {
             </div>
           </fieldset>
 
+          <p className="text-red-500">{error}</p>
           <div className="flex justify-between mt-6">
             <button className="btn btn-primary px-6" onClick={handleLogin}>
               Login
